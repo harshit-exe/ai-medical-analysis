@@ -37,7 +37,7 @@ export function AnalysisInfographic({ analysis, modelType }) {
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="details">Details</TabsTrigger>
+              {/* <TabsTrigger value="details">Details</TabsTrigger> */}
               <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
             </TabsList>
             <TabsContent value="overview">
