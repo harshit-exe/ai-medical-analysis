@@ -70,3 +70,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* *{
+  outline: .5px solid black;
+} */
