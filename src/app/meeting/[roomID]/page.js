@@ -29,8 +29,8 @@ const InterviewRoom = () => {
       // Initialize participant details
       const userID = Math.floor(Math.random() * 10000).toString();
       const userName = "userName" + userID;
-      const appID = 1170585690;
-      const serverSecret = "a25e505779fcfd8461c1f17973e58924  ";
+      const appID = 867889834;
+      const serverSecret = "01c097f60d9668dd6c3851bbd8a26c0c";
       
       // Generate the token for the video call
       const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID, userID, userName);
@@ -53,7 +53,7 @@ const InterviewRoom = () => {
   }, [roomID]);
 
   const handleGoBack = () => {
-    router.push("/dashboard"); // Navigate back to the previous page
+    router.push("/ai"); // Navigate back to the previous page
   };
 
   return (
