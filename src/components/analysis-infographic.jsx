@@ -38,6 +38,7 @@ export function AnalysisInfographic({ analysis, modelType }) {
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               {/* <TabsTrigger value="details">Details</TabsTrigger> */}
+
               <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
             </TabsList>
             <TabsContent value="overview">
@@ -54,28 +55,7 @@ export function AnalysisInfographic({ analysis, modelType }) {
                 </CardContent>
               </Card>
             </TabsContent>
-            {/* <TabsContent value="details">
-              <Card>
-                <CardContent className="p-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    {Object.entries(analysis.additionalData).map(([key, value]) => (
-                      <div key={key} className="flex items-center space-x-2">
-                        <BarChart2 className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm">{key}:</span>
-                        <span className="font-semibold">{value}</span>
-                      </div>
-                    ))}
-                    {Object.entries(getModelSpecificData(analysis, modelType)).map(([key, value]) => (
-                      <div key={key} className="flex items-center space-x-2">
-                        <BarChart2 className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm">{formatLabel(key)}:</span>
-                        <span className="font-semibold">{value}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent> */}
+        
             <TabsContent value="recommendations">
               <Card>
                 <CardContent className="p-4">
