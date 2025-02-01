@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,7 +12,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
+
+
+
+import React from "react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+import { BaseApiUrl } from "@/utils/constants";
+
+
 export default function LoginPage() {
+
+
+  const router = useRouter();
+
+  const clientId = "976004726633-qd21qspr0t0hep43vup331of8aq1u8je.apps.googleusercontent.com";
+  // 768974449019-60pn6e18b4grspfbhr7bs388k5g97sm2.apps.googleusercontent.com
+
+
+  const onSignupSuccess = async (res) => {
+    console.log(res);
+    
+    console.log(res.email);
+    console.log(res.name);
+
+    const response = await fetch(`${BaseApiUrl}/user/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username: res.name, email: res.email }),
+    });
+    const json = await response.json();
+
+    if (json) {
+      localStorage.setItem("token", json.authToken);
+      // router.push("/dashboard");
+    }
+  };
+
+  const onSignupFailure = () => {
+    console.log("Some error are occuring please try again.");
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
@@ -46,24 +90,19 @@ export default function LoginPage() {
               </span>
             </div>
           </div>
-          <Button variant="outline" className="w-full">
-            <svg
-              className="mr-2 h-4 w-4"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fab"
-              data-icon="google"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 488 512"
-            >
-              <path
-                fill="currentColor"
-                d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-              ></path>
-            </svg>
-            Login with Google
-          </Button>
+          {/* <Button variant="outline" className="w-full"> */}
+          <GoogleOAuthProvider clientId={clientId}>
+              <GoogleLogin
+                buttonText="Signup With Google"
+                onSuccess={(credentialResponse) => {
+                  const decoded = jwtDecode(credentialResponse.credential);
+                  onSignupSuccess(decoded);
+                  console.log(decoded);
+                }}
+                onError={onSignupFailure}
+              />
+            </GoogleOAuthProvider>
+          {/* </Button> */}
         </CardFooter>
       </Card>
     </div>
