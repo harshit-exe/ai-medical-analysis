@@ -49,7 +49,7 @@ export default function LoginPage() {
 
         if (json) {
             localStorage.setItem("token", json.authToken);
-            // router.push("/dashboard");
+            router.push("/landing");
         }
     };
 
