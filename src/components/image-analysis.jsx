@@ -2,7 +2,15 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Loader2 } from "lucide-react"
+import { Loader2, Activity, BarChart, Circle, Brain, TreesIcon as Lungs } from "lucide-react"
+
+const IconMap = {
+  activity: Activity,
+  "bar-chart": BarChart,
+  circle: Circle,
+  brain: Brain,
+  lungs: Lungs,
+}
 
 export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
   const [confidence, setConfidence] = useState(0)
@@ -10,7 +18,7 @@ export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
   useEffect(() => {
     if (analysis?.confidence) {
       const timer = setTimeout(() => {
-        setConfidence(analysis.confidence * 100)
+        setConfidence(analysis.confidence)
       }, 100)
       return () => clearTimeout(timer)
     }
@@ -59,22 +67,23 @@ export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
               <p className="text-xs text-gray-400 mt-2">Classification: {analysis.label}</p>
             </div>
 
-            {analysis.heatmap && (
-              <div className="space-y-2">
-                <h3 className="font-medium">Heatmap Visualization</h3>
-                <div className="relative aspect-square rounded-lg overflow-hidden border border-gray-700">
-                  <Image
-                    src={analysis.heatmap || "/placeholder.svg"}
-                    alt="Analysis heatmap"
-                    layout="fill"
-                    objectFit="contain"
-                  />
-                </div>
-                <p className="text-xs text-gray-400 mt-2">
-                  Heatmap shows areas of interest identified by the AI model.
-                </p>
-              </div>
-            )}
+            <div className="space-y-2">
+              <h3 className="font-medium">Additional Data</h3>
+              <ul className="text-sm text-gray-300 space-y-2">
+                {analysis.additionalData.map((item, index) => {
+                  const Icon = IconMap[item.icon]
+                  return (
+                    <li key={index} className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        {Icon && <Icon className="h-4 w-4 text-teal-400" />}
+                        <span>{item.label}:</span>
+                      </div>
+                      <span className="font-semibold">{item.value}</span>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
         </Card>
       )}
