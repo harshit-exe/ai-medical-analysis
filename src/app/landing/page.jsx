@@ -12,10 +12,17 @@ export default function Home() {
     <>
       <Navbar />
       <main className="flex min-h-screen flex-col">
+<<<<<<< HEAD
         <section id="home"><Hero /></section>
         <section id="about"><About /></section>
         <section id="features"><Features /></section>
         {/* <section id="upload"><Upload /></section> */}
+=======
+        <Hero />
+        <About />
+        <Features />
+        {/* <Upload /> */}
+>>>>>>> origin/abhishek
       </main>
       <Footer />
     </>
