@@ -2,9 +2,12 @@
 
 import { Play } from "lucide-react";
 import CountUp from "../components/CountUp";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Link from "next/link";
+import SplitText from "./animate/SplitText";
 
 export default function Hero() {
+  const containerRef = useRef(null);
   const [hovered, setHovered] = useState(null); // ✅ Correct placement
 
   return (
@@ -13,11 +16,20 @@ export default function Hero() {
         <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_800px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                AI-Powered Radiology
-                <br />
-                Diagnosis Platform
-              </h1>
+              <SplitText
+                text="AI-Powered Radiology Diagnosis Platform"
+                className="text-[3rem] font-semibold text-center"
+                delay={20}
+                animationFrom={{
+                  opacity: 0,
+                  transform: "translate3d(0,50px,0)",
+                }}
+                animationTo={{ opacity: 1, transform: "translate3d(0,0,0)" }}
+                easing="easeOutCubic"
+                threshold={0.2}
+                rootMargin="-50px"
+                // onLetterAnimationComplete={handleAnimationComplete}
+              />
               <p className="max-w-[600px] text-gray-500 md:text-xl">
                 Revolutionizing medical imaging with advanced AI technology for
                 faster, more accurate diagnoses.
@@ -32,28 +44,19 @@ export default function Hero() {
               </a>
 
               <div className="flex space-x-4">
-                {/* <button
-                  className={`inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-6 text-sm font-medium transition-all duration-300 ${
-                    hovered === "signin"
-                      ? "bg-gray-200 scale-105"
-                      : "hover:bg-gray-100"
-                  }`}
-                  onMouseEnter={() => setHovered("signin")}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  Sign In
-                </button> */}
-                <button
-                  className={`inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-6 text-sm font-medium transition-all duration-300 ${
-                    hovered === "login"
-                      ? "bg-gray-200 scale-105"
-                      : "hover:bg-gray-100"
-                  }`}
-                  onMouseEnter={() => setHovered("login")}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  Log In
-                </button>
+                <Link href={"/login"}>
+                  <button
+                    className={`inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-6 text-sm font-medium transition-all duration-300 ${
+                      hovered === "login"
+                        ? "bg-gray-200 scale-105"
+                        : "hover:bg-gray-100"
+                    }`}
+                    onMouseEnter={() => setHovered("login")}
+                    onMouseLeave={() => setHovered(null)}
+                  >
+                    Log In
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -68,28 +71,56 @@ export default function Hero() {
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={99} separator="," direction="up" duration={1} className="count-up-text" />
+              <CountUp
+                from={0}
+                to={99}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+              />
               %
             </h3>
             <p className="text-sm text-gray-500">Accuracy Rate</p>
           </div>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={1000000} separator="," direction="up" duration={1} className="count-up-text" />
+              <CountUp
+                from={0}
+                to={1000000}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+              />
               +
             </h3>
             <p className="text-sm text-gray-500">Scans Analyzed</p>
           </div>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={500} separator="," direction="up" duration={1} className="count-up-text" />
+              <CountUp
+                from={0}
+                to={500}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+              />
               +
             </h3>
             <p className="text-sm text-gray-500">Hospitals Using</p>
           </div>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={24} separator="," direction="up" duration={1} className="count-up-text" />
+              <CountUp
+                from={0}
+                to={24}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+              />
               /7
             </h3>
             <p className="text-sm text-gray-500">Support Available</p>

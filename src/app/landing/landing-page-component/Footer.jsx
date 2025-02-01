@@ -1,9 +1,9 @@
-import { Shield } from "lucide-react"
-import Link from "next/link"
+import { Shield } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t bg-white">
+    <footer className="border-t bg-white px-20 ">
       <div className="container flex flex-col gap-6 py-8 md:py-12">
         <div className="flex items-center space-x-2">
           <Shield className="h-6 w-6 text-blue-600" />
@@ -76,6 +76,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
-
