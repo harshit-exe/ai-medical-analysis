@@ -53,7 +53,7 @@ const InterviewRoom = () => {
   }, [roomID]);
 
   const handleGoBack = () => {
-    router.push("/ai"); // Navigate back to the previous page
+    router.push("/ai"); 
   };
 
   return (
