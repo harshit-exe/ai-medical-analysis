@@ -34,7 +34,7 @@ export default function LoginPage() {
 
   const onSignupSuccess = async (res) => {
     console.log(res);
-    
+
     console.log(res.email);
     console.log(res.name);
 
@@ -56,6 +56,72 @@ export default function LoginPage() {
   const onSignupFailure = () => {
     console.log("Some error are occuring please try again.");
   };
+
+
+
+
+
+
+
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Create a new FormData object
+    const formData = new FormData(e.target);
+
+
+    const email = formData.get("email");
+    const username = formData.get("username");
+
+
+
+
+
+    // let { email, password, userName, userType, firstname, lastname } = formData
+    const response = await fetch(`${BaseApiUrl}/user/add`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email: email, username: username, })
+    });
+    const json = await response.json();
+
+    if (json) {
+      console.log(json);
+
+      localStorage.setItem('email', email)
+      // toast.success("Otp send successfully");
+      router.push("/otp")
+    } else {
+      toast.error("Error to Create");
+    }
+
+    // router.push("/otp")
+
+
+    console.log({ email, username, role, password });
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
@@ -68,17 +134,20 @@ export default function LoginPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter your email" />
-              </div>
+          <form onSubmit={handleSubmit} className="my-4">
+            <div className="flex flex-col space-y-2 my-2">
+              <Label>Email</Label>
+              <Input name="email" type="email" required />
             </div>
+           
+
+            <Button type="submit" className="bg-black w-full text-white py-2 text-center rounded-md">
+              Send OTP
+            </Button>
+            {/* <Link href={"/otp"} className="bg-black w-full text-white py-2 text-center rounded-md">Login with OTP</Link> */}
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          <Link href={"/otp"} className="bg-black w-full text-white py-2 text-center rounded-md">Login with OTP</Link>
 
           <div className="relative w-full">
             <div className="absolute inset-0 flex items-center">
@@ -92,16 +161,16 @@ export default function LoginPage() {
           </div>
           {/* <Button variant="outline" className="w-full"> */}
           <GoogleOAuthProvider clientId={clientId}>
-              <GoogleLogin
-                buttonText="Signup With Google"
-                onSuccess={(credentialResponse) => {
-                  const decoded = jwtDecode(credentialResponse.credential);
-                  onSignupSuccess(decoded);
-                  console.log(decoded);
-                }}
-                onError={onSignupFailure}
-              />
-            </GoogleOAuthProvider>
+            <GoogleLogin
+              buttonText="Signup With Google"
+              onSuccess={(credentialResponse) => {
+                const decoded = jwtDecode(credentialResponse.credential);
+                onSignupSuccess(decoded);
+                console.log(decoded);
+              }}
+              onError={onSignupFailure}
+            />
+          </GoogleOAuthProvider>
           {/* </Button> */}
         </CardFooter>
       </Card>
