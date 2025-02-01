@@ -1,7 +1,7 @@
 "use client";
 
 import { Play } from "lucide-react";
-import CountUp from "../components/CountUp";
+import CountUp from "../../../components/CountUp";
 import { useState } from "react";
 
 export default function Hero() {
