@@ -34,9 +34,7 @@ export default function LoginPage() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-4">
-          {/* <Link > */}
-            <Button className="w-full" href={"/otp"}>Login with OTP</Button>
-          {/* </Link> */}
+          <Link href={"/otp"} className="bg-black w-full text-white py-2 text-center rounded-md">Login with OTP</Link>
 
           <div className="relative w-full">
             <div className="absolute inset-0 flex items-center">
