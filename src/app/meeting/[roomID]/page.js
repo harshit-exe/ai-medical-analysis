@@ -16,7 +16,7 @@ const InterviewRoom = () => {
       if (typeof window !== "undefined") {
         // Fetch the roomID from the URL if present, otherwise generate a random one
         const urlParams = new URLSearchParams(window.location.search);
-        const urlRoomID = urlParams.get("roomID") || Math.floor(Math.random() * 10000).toString();
+        const urlRoomID = '9885';
         setRoomID(urlRoomID);
       }
     };
