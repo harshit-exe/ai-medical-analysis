@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between px-20">
         <Link href="/" className="flex items-center space-x-2">
           <Shield className="h-8 w-8 text-blue-600" />
-          <span className="text-xl font-bold">AI-Rad Diagnostics</span>
+          <span className="text-xl font-bold">AI Diagnostics</span>
         </Link>
         <nav className="hidden md:flex items-center space-x-10">
           <Link href="#" className="text-sm font-medium hover:text-blue-600">

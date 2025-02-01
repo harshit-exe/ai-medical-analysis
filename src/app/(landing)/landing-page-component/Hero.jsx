@@ -11,11 +11,11 @@ export default function Hero() {
   const [hovered, setHovered] = useState(null); // ✅ Correct placement
 
   return (
-    <section className="pt-20 pb-12 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 to-white">
+    <section className="pt-20 pb-12 md:pt-32 md:pb-24 ">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_600px] lg:gap-12 xl:grid-cols-[1fr_800px]">
           <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
+            <div className="space-y-2 ml-5">
               <SplitText
                 text="AI-Powered Radiology Diagnosis Platform"
                 className="text-[3rem] font-semibold text-center"
@@ -35,7 +35,7 @@ export default function Hero() {
                 faster, more accurate diagnoses.
               </p>
             </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
+            <div className="flex flex-col gap-2 min-[400px]:flex-row ml-5">
               <a
                 href="#upload"
                 className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white hover:bg-blue-700"
