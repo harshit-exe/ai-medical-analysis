@@ -78,8 +78,3 @@
 - *Email & SMS Notifications*  
 
 ---
-
-## 🔥 Next Steps
-1️⃣ Do you need a *visual diagram (UML or Flowchart)?*  
-2️⃣ Want a *Figma UI wireframe for screens?*  
-3️⃣ Need *frontend code snippets for Next.js?*
