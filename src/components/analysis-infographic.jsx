@@ -75,7 +75,7 @@ export function AnalysisInfographic({ analysis, modelType }) {
               <Button className="flex items-center"
               onClick={() => window.open("/book-appointment", "_blank")}>
                   <Calendar className="mr-2 h-4 w-4" />
-                  Book Appointment
+                  Book Appointment.
               </Button>
               <Button
                 variant="outline"
