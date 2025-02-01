@@ -51,7 +51,7 @@ export default function OtpPage() {
 
 
       localStorage.setItem('token', json.data.token)
-      router.push("/dashboard")
+      router.push("/ai")
 
 
 

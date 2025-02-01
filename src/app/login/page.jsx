@@ -28,7 +28,8 @@ export default function LoginPage() {
 
   const router = useRouter();
 
-  const clientId = "976004726633-qd21qspr0t0hep43vup331of8aq1u8je.apps.googleusercontent.com";
+  const clientId = "513213970573-uvdspamor1q0fel9781sccmr3du8puf2.apps.googleusercontent.com";
+  // const clientId = "976004726633-qd21qspr0t0hep43vup331of8aq1u8je.apps.googleusercontent.com";
   // 768974449019-60pn6e18b4grspfbhr7bs388k5g97sm2.apps.googleusercontent.com
 
 
@@ -49,7 +50,7 @@ export default function LoginPage() {
 
     if (json) {
       localStorage.setItem("token", json.authToken);
-      router.push("/landing");
+      router.push("/ai");
     }
   };
 
