@@ -1,7 +1,12 @@
-import { Play } from "lucide-react"
-import CountUp from "../components/CountUp"
+"use client";
+
+import { Play } from "lucide-react";
+import CountUp from "../components/CountUp";
+import { useState } from "react";
 
 export default function Hero() {
+  const [hovered, setHovered] = useState(null); // ✅ Correct placement
+
   return (
     <section className="pt-20 pb-12 md:pt-32 md:pb-24 bg-gradient-to-br from-blue-50 to-white">
       <div className="container px-4 md:px-6">
@@ -14,7 +19,8 @@ export default function Hero() {
                 Diagnosis Platform
               </h1>
               <p className="max-w-[600px] text-gray-500 md:text-xl">
-                Revolutionizing medical imaging with advanced AI technology for faster, more accurate diagnoses.
+                Revolutionizing medical imaging with advanced AI technology for
+                faster, more accurate diagnoses.
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -24,9 +30,31 @@ export default function Hero() {
               >
                 Upload Your Scan
               </a>
-              <button className="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-8 text-sm font-medium hover:bg-gray-100">
-                <Play className="mr-2 h-4 w-4" /> Watch Demo
-              </button>
+
+              <div className="flex space-x-4">
+                {/* <button
+                  className={`inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-6 text-sm font-medium transition-all duration-300 ${
+                    hovered === "signin"
+                      ? "bg-gray-200 scale-105"
+                      : "hover:bg-gray-100"
+                  }`}
+                  onMouseEnter={() => setHovered("signin")}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  Sign In
+                </button> */}
+                <button
+                  className={`inline-flex h-10 items-center justify-center rounded-md border border-gray-200 px-6 text-sm font-medium transition-all duration-300 ${
+                    hovered === "login"
+                      ? "bg-gray-200 scale-105"
+                      : "hover:bg-gray-100"
+                  }`}
+                  onMouseEnter={() => setHovered("login")}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  Log In
+                </button>
+              </div>
             </div>
           </div>
           <img
@@ -40,19 +68,22 @@ export default function Hero() {
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={99} separator="," direction="up" duration={1} className="count-up-text" />%
+              <CountUp from={0} to={99} separator="," direction="up" duration={1} className="count-up-text" />
+              %
             </h3>
             <p className="text-sm text-gray-500">Accuracy Rate</p>
           </div>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={1000000} separator="," direction="up" duration={1} className="count-up-text" />+
+              <CountUp from={0} to={1000000} separator="," direction="up" duration={1} className="count-up-text" />
+              +
             </h3>
             <p className="text-sm text-gray-500">Scans Analyzed</p>
           </div>
           <div className="text-center">
             <h3 className="text-3xl font-bold text-blue-600">
-              <CountUp from={0} to={500} separator="," direction="up" duration={1} className="count-up-text" />+
+              <CountUp from={0} to={500} separator="," direction="up" duration={1} className="count-up-text" />
+              +
             </h3>
             <p className="text-sm text-gray-500">Hospitals Using</p>
           </div>
@@ -66,6 +97,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
-
