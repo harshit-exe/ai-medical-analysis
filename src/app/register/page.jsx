@@ -98,7 +98,7 @@ export default function LoginPage() {
         } else {
             toast.error("Error to Create");
         }
-        
+
         // router.push("/otp")
 
 
@@ -141,26 +141,26 @@ export default function LoginPage() {
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    
-                        <form onSubmit={handleSubmit} className="my-4">
-                            <div className="flex flex-col space-y-2 my-2">
-                                <Label>Email</Label>
-                                <Input name="email" type="email" required />
-                            </div>
-                            <div className="flex flex-col space-y-2 my-4">
-                                <Label>User Name</Label>
-                                <Input name="username" required />
-                            </div>
+
+                    <form onSubmit={handleSubmit} className="my-4">
+                        <div className="flex flex-col space-y-2 my-2">
+                            <Label>Email</Label>
+                            <Input name="email" type="email" required />
+                        </div>
+                        <div className="flex flex-col space-y-2 my-4">
+                            <Label>User Name</Label>
+                            <Input name="username" required />
+                        </div>
 
 
 
 
-                            <Button type="submit" className="bg-black w-full text-white py-2 text-center rounded-md">
-                                Send OTP
-                            </Button>
-                            {/* <Link href={"/otp"} className="bg-black w-full text-white py-2 text-center rounded-md">Login with OTP</Link> */}
-                        </form>
-                    
+                        <Button type="submit" className="bg-black w-full text-white py-2 text-center rounded-md">
+                            Send OTP
+                        </Button>
+                        {/* <Link href={"/otp"} className="bg-black w-full text-white py-2 text-center rounded-md">Login with OTP</Link> */}
+                    </form>
+
                 </CardContent>
                 <CardFooter className="flex flex-col space-y-4">
 
@@ -186,6 +186,11 @@ export default function LoginPage() {
                             onError={onSignupFailure}
                         />
                     </GoogleOAuthProvider>
+
+                    <div className="pt-3">
+                        <hr />
+                        if you have account click <Link href={'/login'} className="text-blue-900 hover:text-red-500"> here </Link>
+                    </div>
                     {/* </Button> */}
                 </CardFooter>
             </Card>

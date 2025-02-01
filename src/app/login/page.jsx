@@ -139,7 +139,7 @@ export default function LoginPage() {
               <Label>Email</Label>
               <Input name="email" type="email" required />
             </div>
-           
+
 
             <Button type="submit" className="bg-black w-full text-white py-2 text-center rounded-md">
               Send OTP
@@ -171,6 +171,12 @@ export default function LoginPage() {
               onError={onSignupFailure}
             />
           </GoogleOAuthProvider>
+
+
+          <div className="pt-3">
+            <hr />
+            if you don't have account click <Link href={'/register'} className="text-blue-900 hover:text-red-500"> here </Link>
+          </div>
           {/* </Button> */}
         </CardFooter>
       </Card>
