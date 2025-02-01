@@ -19,8 +19,8 @@ export default function Navbar() {
           <Link href="#" className="text-sm font-medium hover:text-blue-600">
             Features
           </Link>
-          <Link href="#" className="text-sm font-medium hover:text-blue-600">
-            Security
+          <Link href={'/login'} className="text-sm font-medium hover:text-blue-600">
+            Login
           </Link>
         </nav>
         {/* <div className="flex items-center space-x-4">

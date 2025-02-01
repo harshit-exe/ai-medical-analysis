@@ -37,7 +37,7 @@ export default function Hero() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row ml-5">
               <a
-                href="#upload"
+                href={'/login'}
                 className="inline-flex h-10 items-center justify-center rounded-md bg-blue-600 px-8 text-sm font-medium text-white hover:bg-blue-700"
               >
                 Upload Your Scan
