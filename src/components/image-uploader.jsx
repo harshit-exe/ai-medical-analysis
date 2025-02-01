@@ -5,7 +5,7 @@ import { useDropzone } from "react-dropzone"
 import { Upload, Loader2 } from "lucide-react"
 
 
-export function ImageUploader({ onImageSelect, isLoading, error }) {
+export function ImageUploader({ onImageSelect, isLoading, error, isDisabled }) {
   const onDrop = useCallback(
     (acceptedFiles) => {
       const file = acceptedFiles[0]
@@ -28,7 +28,7 @@ export function ImageUploader({ onImageSelect, isLoading, error }) {
       "image/*": [".jpeg", ".jpg", ".png", ".dicom"],
     },
     maxFiles: 1,
-    disabled: isLoading,
+    disabled: isLoading || isDisabled,
   })
 
   return (
@@ -38,7 +38,7 @@ export function ImageUploader({ onImageSelect, isLoading, error }) {
         border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
         ${isDragActive ? "border-teal-500 bg-teal-500/10" : "border-gray-600"}
         ${error ? "border-red-500" : ""}
-        ${isLoading ? "opacity-50 cursor-not-allowed" : ""}
+        ${isLoading || isDisabled ? "opacity-50 cursor-not-allowed" : ""}
       `}
     >
       <input {...getInputProps()} />
@@ -50,7 +50,11 @@ export function ImageUploader({ onImageSelect, isLoading, error }) {
         )}
         <div>
           <p className="text-sm text-gray-300">
-            {isDragActive ? "Drop the image here" : "Drag and drop an image, or click to select"}
+            {isDragActive
+              ? "Drop the image here"
+              : isDisabled
+              ? "Please enter patient information before uploading an image"
+              : "Drag and drop an image, or click to select"}
           </p>
           <p className="text-xs text-gray-400 mt-2">Supported formats: JPEG, PNG, DICOM</p>
         </div>

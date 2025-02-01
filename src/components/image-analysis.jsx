@@ -2,14 +2,12 @@ import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Loader2, Activity, BarChart, Circle, Brain, TreesIcon as Lungs } from "lucide-react"
+import { Loader2, Activity, BarChart2, ImageIcon } from "lucide-react"
 
 const IconMap = {
   activity: Activity,
-  "bar-chart": BarChart,
-  circle: Circle,
-  brain: Brain,
-  lungs: Lungs,
+  "bar-chart": BarChart2,
+  image: ImageIcon,
 }
 
 export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
@@ -34,10 +32,10 @@ export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold">Analysis Results</h2>
+      <h2 className="text-xl font-semibold text-gray-800">Image Analysis</h2>
 
       {image && (
-        <div className="relative aspect-square rounded-lg overflow-hidden border border-gray-700">
+        <div className="relative aspect-square rounded-lg overflow-hidden border border-gray-300">
           <Image src={image || "/placeholder.svg"} alt="Uploaded medical image" layout="fill" objectFit="contain" />
         </div>
       )}
@@ -45,45 +43,41 @@ export function ImageAnalysis({ image, analysis, isLoading, modelType }) {
       {isLoading && (
         <div className="space-y-4">
           <div className="flex items-center space-x-3">
-            <Loader2 className="h-4 w-4 animate-spin" />
-            <p className="text-sm text-gray-400">Analyzing image...</p>
+            <Loader2 className="h-4 w-4 animate-spin text-blue-500" />
+            <p className="text-sm text-gray-600">Analyzing image...</p>
           </div>
           <Progress value={confidence} className="h-2" />
         </div>
       )}
 
       {analysis && !isLoading && (
-        <Card className="p-4 bg-gray-800/50 border-gray-700">
+        <Card className="p-4 bg-white border-gray-200">
           <div className="space-y-4">
             <div className="flex justify-between items-center">
-              <span className="font-medium">Detection Confidence</span>
-              <span className="text-teal-400">{confidence.toFixed(1)}%</span>
+              <span className="font-medium text-gray-700">Analysis Complete</span>
+              <span className="text-blue-600 font-semibold">{confidence.toFixed(1)}% Confidence</span>
             </div>
             <Progress value={confidence} className="h-2" />
-
-            <div className="space-y-2">
-              <h3 className="font-medium">Findings</h3>
-              <p className="text-sm text-gray-300">{analysis.description}</p>
-              <p className="text-xs text-gray-400 mt-2">Classification: {analysis.label}</p>
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="font-medium">Additional Data</h3>
-              <ul className="text-sm text-gray-300 space-y-2">
+            <p className="text-sm text-gray-600">
+              {analysis.abnormalityDetected
+                ? "Potential abnormalities detected. Please refer to the detailed infographic below for more information."
+                : "No significant abnormalities detected. Please refer to the detailed infographic below for more information."}
+            </p>
+            {analysis.additionalData && (
+              <div className="grid grid-cols-2 gap-2">
                 {analysis.additionalData.map((item, index) => {
                   const Icon = IconMap[item.icon]
                   return (
-                    <li key={index} className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        {Icon && <Icon className="h-4 w-4 text-teal-400" />}
-                        <span>{item.label}:</span>
-                      </div>
-                      <span className="font-semibold">{item.value}</span>
-                    </li>
+                    <div key={index} className="flex items-center space-x-2">
+                      {Icon && <Icon className="h-4 w-4 text-blue-500" />}
+                      <span className="text-sm text-gray-600">
+                        {item.label}: {item.value}
+                      </span>
+                    </div>
                   )
                 })}
-              </ul>
-            </div>
+              </div>
+            )}
           </div>
         </Card>
       )}
