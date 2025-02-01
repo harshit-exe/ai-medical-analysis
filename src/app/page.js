@@ -3,9 +3,9 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <main>
       <Link href='/ai'>Hii</Link>
-    </div>
+    </main>
   )
 }
 
